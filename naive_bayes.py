@@ -18,6 +18,10 @@ def getDF(path):
 df = getDF('Gift_Cards_5.json.gz')
 df = df[df['reviewText'].notna()]
 
+from spell_check import fixSentence
+df['reviewText'] = df['reviewText'].apply(lambda x: fixSentence(x))
+
+
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.tokenize import RegexpTokenizer
 
@@ -34,6 +38,16 @@ MNB = MultinomialNB()
 MNB.fit(X_train, y_train)
 
 from sklearn import metrics
-predicted = MNB.predict(X_test)
-accuracy_score = metrics.accuracy_score(predicted, y_test)
-print(str('{:04.2f}'.format(accuracy_score*100))+'%')
+#train scores
+train_predicted = MNB.predict(X_train)
+train_accuracy_score = metrics.accuracy_score(y_train, train_predicted)
+train_f1_score = metrics.f1_score(y_train, train_predicted, average = 'macro')
+print(str('{:04.2f}'.format(train_accuracy_score*100))+'%')
+print(train_f1_score)
+
+#test scores
+test_predicted = MNB.predict(X_test)
+test_accuracy_score = metrics.accuracy_score(y_test, test_predicted)
+test_f1_score = metrics.f1_score(y_test, test_predicted, average = 'macro')
+print(str('{:04.2f}'.format(train_accuracy_score*100))+'%')
+print(test_f1_score)
