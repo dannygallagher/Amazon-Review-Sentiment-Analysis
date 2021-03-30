@@ -24,13 +24,13 @@ df['reviewText'] = df['reviewText'].apply(lambda x: fixSentence(x))
 
 print('CHECKPOINT: Spell Check Complete')
 
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
 depth = [int(x) for x in np.linspace(10, 40, num = 5)]
 estimators = [int(x) for x in np.linspace(start = 50, stop = 200, num = 5)]
 
-rf = RandomForestRegressor()
+rf = RandomForestClassifier()
 grid = {'max_depth': depth, 'n_estimators': estimators}
 GS_object = GridSearchCV(estimator = rf, param_grid = grid)
 
