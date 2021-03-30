@@ -1,6 +1,7 @@
 import pandas as pd
 import gzip
 import json
+import numpy as np
 
 def parse(path):
   g = gzip.open(path, 'rb')
