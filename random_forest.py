@@ -34,6 +34,13 @@ rf = RandomForestRegressor()
 grid = {'max_depth': depth, 'n_estimators': estimators}
 GS_object = GridSearchCV(estimator = rf, param_grid = grid)
 
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.tokenize import RegexpTokenizer
+
+token = RegexpTokenizer(r'[a-zA-Z0-9]+')
+cv = CountVectorizer(stop_words='english',ngram_range = (1,1),tokenizer = token.tokenize)
+text_counts = cv.fit_transform(df['reviewText'])
+
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(text_counts, df['overall'], test_size = 0.25, random_state = 5)
 
