@@ -2,6 +2,7 @@
 Tom Donnelly, William Fallon, Dan Gallagher
 
 We apply a variety of machine learning models to predict the sentiment of Amazon reviews (downloaded from https://nijianmo.github.io/amazon/index.html) using only the associated text. Specifically, we examined positive/negative as well as neutral/non-neutral sentiment, based off the review's star rating.
+
 While others have studied this dataset for sentiment analysis, the focus often lies on the architecture of the utilized neural network, with data preprocessing often being relatively sparse. Additionally, the literature generally studies the positive vs. negative classification problem, often eschewing the classification of neutrality.
 
 Therefore, our goals were to examine the extent to which a more robust preprocessing method might improve our results versus the current benchmarks and to build models capable of differentiating neutral and non-neutral reviews in addition to positive and negative ones.
